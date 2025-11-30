@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCR Detailing | L'Excellence Automobile</title>
+    <meta name="description" content="Service de detailing automobile premium à domicile.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Calendly Widget CSS -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    
+    <!-- Google Fonts: Inter pour le look "Tech/Fintech" -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            black: '#050505',
+                            surface: '#121212',
+                            surfaceLight: '#1E1E1E',
+                            accent: '#3b82f6', 
+                            gold: '#D4AF37',
+                        }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #050505;
+            color: #ffffff;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .glass-nav {
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Input Autofill fix for dark mode */
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover, 
+        input:-webkit-autofill:focus, 
+        textarea:-webkit-autofill,
+        textarea:-webkit-autofill:hover,
+        textarea:-webkit-autofill:focus {
+            -webkit-text-fill-color: white;
+            -webkit-box-shadow: 0 0 0px 1000px #1E1E1E inset;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+        
+        /* Calendly Dark Mode Override */
+        .calendly-inline-widget {
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050505;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="antialiased font-sans selection:bg-brand-accent selection:text-white">
+
+    <!-- HEADER -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <div class="w-8 h-8 bg-white rounded flex items-center justify-center">
+                        <span class="text-black font-extrabold text-sm">SCR</span>
+                    </div>
+                    <span class="font-semibold text-lg tracking-tight text-white">Detailing<span class="text-brand-accent">.</span></span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-1">
+                    <a href="#accueil" class="px-4 py-2 text-sm font-medium text-gray-400 hover:text-white transition-colors">Accueil</a>
+                    <a href="#services" class="px-4 py-2 text-sm font-medium text-gray-400 hover:text-white transition-colors">Offres</a>
+                    <a href="#galerie" class="px-4 py-2 text-sm font-medium text-gray-400 hover:text-white transition-colors">Réalisations</a>
+                    <a href="#avis" class="px-4 py-2 text-sm font-medium text-gray-400 hover:text-white transition-colors">Avis</a>
+                    
+                    <!-- Social Icons Desktop -->
+                    <div class="flex items-center gap-3 ml-2 border-l border-white/10 pl-4">
+                        <a href="https://instagram.com/scr.detailing" target="_blank" class="text-gray-400 hover:text-brand-accent transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://tiktok.com/@scr.detailing" target="_blank" class="text-gray-400 hover:text-white transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+                    </div>
+
+                    <a href="#contact" class="ml-4 bg-white text-black hover:bg-gray-200 px-5 py-2.5 rounded-full font-semibold text-sm transition-all">
+                        Réserver
+                    </a>
+                </div>
+
+                <button onclick="toggleMenu()" class="md:hidden text-white p-2">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-surface border-b border-white/5">
+            <div class="px-4 pt-2 pb-4 space-y-1">
+                <a href="#accueil" onclick="toggleMenu()" class="block px-3 py-3 text-base font-medium text-gray-300 hover:text-white border-b border-white/5">Accueil</a>
+                <a href="#services" onclick="toggleMenu()" class="block px-3 py-3 text-base font-medium text-gray-300 hover:text-white border-b border-white/5">Offres</a>
+                <a href="#galerie" onclick="toggleMenu()" class="block px-3 py-3 text-base font-medium text-gray-300 hover:text-white border-b border-white/5">Réalisations</a>
+                <a href="#avis" onclick="toggleMenu()" class="block px-3 py-3 text-base font-medium text-gray-300 hover:text-white border-b border-white/5">Avis Clients</a>
+                <a href="#contact" onclick="toggleMenu()" class="block px-3 py-3 text-base font-bold text-brand-accent">Réserver maintenant</a>
+                
+                <!-- Social Icons Mobile -->
+                <div class="flex items-center justify-center gap-6 pt-4 pb-2">
+                    <a href="https://instagram.com/scr.detailing" target="_blank" class="text-2xl text-gray-400 hover:text-brand-accent transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://tiktok.com/@scr.detailing" target="_blank" class="text-2xl text-gray-400 hover:text-white transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="https://snapchat.com/add/scr.detailing" target="_blank" class="text-2xl text-gray-400 hover:text-yellow-400 transition-colors"><i class="fa-brands fa-snapchat"></i></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="accueil" class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1619767886558-efdc259cde1a?q=80&w=2070&auto=format&fit=crop" alt="Luxury Car" class="w-full h-full object-cover opacity-40 grayscale">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/80 to-transparent"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 w-full">
+            <div class="max-w-3xl">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/10 backdrop-blur-sm mb-8">
+                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                    <span class="text-xs font-medium uppercase tracking-wide text-white">Disponible à domicile</span>
+                </div>
+
+                <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-[1.1] tracking-tight">
+                    L'excellence <br>
+                    <span class="text-gray-500">livrée chez vous.</span>
+                </h1>
+                
+                <p class="text-xl text-gray-400 mb-10 font-light max-w-xl leading-relaxed">
+                    Ne perdez plus votre temps en station de lavage. SCR Detailing transforme votre véhicule directement devant votre porte.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#services" class="bg-brand-accent hover:bg-blue-600 text-white px-8 py-4 rounded-full font-semibold text-center transition-all">
+                        Voir les formules
+                    </a>
+                    <a href="#contact" class="bg-white/5 hover:bg-white/10 backdrop-blur-md border border-white/10 text-white px-8 py-4 rounded-full font-semibold text-center transition-all flex items-center justify-center gap-2">
+                        <span>07 49 50 71 40</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="py-24 bg-[#050505]">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="mb-16">
+                <h2 class="text-3xl font-bold text-white mb-4">Pourquoi SCR ?</h2>
+                <p class="text-gray-500">Une approche moderne du nettoyage automobile.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass-card p-8 rounded-3xl hover:bg-white/5 transition-colors">
+                    <div class="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center mb-6 text-brand-accent">
+                        <i class="fa-solid fa-location-arrow text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">100% Mobile</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Nous nous déplaçons avec notre propre eau et électricité si nécessaire. Vous ne gérez rien.</p>
+                </div>
+                <div class="glass-card p-8 rounded-3xl hover:bg-white/5 transition-colors bg-white/5">
+                    <div class="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center mb-6 text-white">
+                        <i class="fa-solid fa-gem text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Qualité Studio</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Des produits professionnels et des techniques de detailing avancées pour un résultat showroom.</p>
+                </div>
+                <div class="glass-card p-8 rounded-3xl hover:bg-white/5 transition-colors">
+                    <div class="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center mb-6 text-brand-accent">
+                        <i class="fa-solid fa-clock text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Gain de temps</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Pendant que vous travaillez ou profitez de votre famille, nous nous occupons de tout.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="services" class="py-24 border-t border-white/5 bg-[#050505]">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-2">Formules</h2>
+                    <p class="text-gray-500">Transparence totale. Pas de frais cachés.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- GOLD -->
+                <div class="rounded-3xl p-8 border border-white/10 bg-brand-surface relative overflow-hidden group hover:border-white/20 transition-all">
+                    <div class="flex justify-between items-start mb-8">
+                        <div>
+                            <h3 class="text-lg font-medium text-gray-400 uppercase tracking-wide">Gold</h3>
+                            <div class="mt-2 flex items-baseline gap-1">
+                                <span class="text-4xl font-bold text-white">50€</span>
+                            </div>
+                        </div>
+                        <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center">
+                            <i class="fa-solid fa-star text-brand-gold text-sm"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-center gap-3 text-sm text-gray-300">
+                            <i class="fa-solid fa-check text-brand-accent"></i> Aspiration complète habitacle
+                        </div>
+                        <div class="flex items-center gap-3 text-sm text-gray-300">
+                            <i class="fa-solid fa-check text-brand-accent"></i> Nettoyage plastiques & vitres
+                        </div>
+                        <div class="flex items-center gap-3 text-sm text-gray-300">
+                            <i class="fa-solid fa-check text-brand-accent"></i> Dépoussiérage minutieux
+                        </div>
+                    </div>
+
+                    <a href="#contact" onclick="preselectService('Gold')" class="block w-full py-4 rounded-xl bg-white/5 text-white text-center font-semibold hover:bg-white hover:text-black transition-all">
+                        Sélectionner Gold
+                    </a>
+                </div>
+
+                <!-- PLATINUM -->
+                <div class="rounded-3xl p-8 border border-brand-surfaceLight bg-gradient-to-b from-brand-surfaceLight to-[#0a0a0a] relative overflow-hidden shadow-2xl">
+                    <div class="absolute top-0 right-0 bg-brand-accent text-white text-xs font-bold px-3 py-1 rounded-bl-xl">POPULAIRE</div>
+                    
+                    <div class="flex justify-between items-start mb-8">
+                        <div>
+                            <h3 class="text-lg font-medium text-brand-accent uppercase tracking-wide">Platinum</h3>
+                            <div class="mt-2 flex items-baseline gap-1">
+                                <span class="text-4xl font-bold text-white">100€</span>
+                            </div>
+                        </div>
+                        <div class="w-10 h-10 rounded-full bg-brand-accent/20 flex items-center justify-center">
+                            <i class="fa-solid fa-crown text-brand-accent text-sm"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-center gap-3 text-sm text-white font-medium">
+                            <div class="w-1.5 h-1.5 rounded-full bg-brand-accent"></div> Tout le pack GOLD
+                        </div>
+                        <div class="h-px bg-white/10 my-2"></div>
+                        <div class="flex items-center gap-3 text-sm text-gray-300">
+                            <i class="fa-solid fa-check text-brand-accent"></i> Shampouinage sièges & moquettes
+                        </div>
+                        <div class="flex items-center gap-3 text-sm text-gray-300">
+                            <i class="fa-solid fa-check text-brand-accent"></i> Contours de portes
+                        </div>
+                        <div class="flex items-center gap-3 text-sm text-gray-300">
+                            <i class="fa-solid fa-check text-brand-accent"></i> Brossage tapis en profondeur
+                        </div>
+                         <div class="flex items-center gap-3 text-sm text-gray-300">
+                            <i class="fa-solid fa-check text-brand-accent"></i> Finitions détaillées
+                        </div>
+                    </div>
+
+                    <a href="#contact" onclick="preselectService('Platinium')" class="block w-full py-4 rounded-xl bg-brand-accent text-white text-center font-semibold hover:bg-blue-600 transition-all shadow-lg shadow-blue-900/20">
+                        Sélectionner Platinum
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERIE BENTO GRID -->
+    <section id="galerie" class="py-24 border-t border-white/5 bg-[#050505]">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-3xl font-bold text-white mb-2">Portfolio</h2>
+                    <p class="text-gray-500">Chaque détail compte. La preuve en images.</p>
+                </div>
+                <a href="https://instagram.com/scr.detailing" target="_blank" class="hidden md:flex text-sm font-medium text-brand-accent hover:text-white transition-colors items-center gap-2">
+                    Voir plus sur Instagram <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+            
+            <!-- Bento Grid Layout -->
+            <div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 h-auto md:h-[600px]">
+                
+                <!-- Large Item (Left) -->
+                <div class="md:col-span-2 md:row-span-2 group relative rounded-3xl overflow-hidden bg-gray-800 border border-white/5">
+                    <img src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?q=80&w=800&auto=format&fit=crop" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Detailing Interior">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-100 flex flex-col justify-end p-8">
+                        <span class="text-brand-accent text-xs font-bold uppercase tracking-wider mb-2">Avant / Après</span>
+                        <h3 class="text-2xl font-bold text-white">Rénovation Cuir Intégrale</h3>
+                        <p class="text-gray-400 text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">Traitement en profondeur des sièges et plastiques pour un aspect neuf.</p>
+                    </div>
+                </div>
+
+                <!-- Top Right Item -->
+                <div class="md:col-span-2 md:row-span-1 group relative rounded-3xl overflow-hidden bg-gray-800 border border-white/5">
+                    <img src="https://images.unsplash.com/photo-1552934526-c82163315277?q=80&w=800&auto=format&fit=crop" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Detailing Exterior">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
+                        <h3 class="text-lg font-bold text-white">Polissage & Lustrage</h3>
+                    </div>
+                </div>
+
+                <!-- Bottom Right Item 1 -->
+                <div class="md:col-span-1 md:row-span-1 group relative rounded-3xl overflow-hidden bg-gray-800 border border-white/5">
+                    <img src="https://images.unsplash.com/photo-1507136566006-cfc505b114fc?q=80&w=600&auto=format&fit=crop" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Moteur">
+                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                        <i class="fa-solid fa-magnifying-glass text-white/80 text-2xl opacity-0 group-hover:opacity-100 transform scale-50 group-hover:scale-100 transition-all"></i>
+                    </div>
+                </div>
+
+                <!-- Bottom Right Item 2 -->
+                <div class="md:col-span-1 md:row-span-1 group relative rounded-3xl overflow-hidden bg-gray-800 border border-white/5 flex items-center justify-center bg-brand-surfaceLight cursor-pointer hover:bg-brand-surface transition-colors">
+                    <div class="text-center p-6">
+                        <div class="w-12 h-12 rounded-full bg-brand-accent/10 flex items-center justify-center mx-auto mb-3 text-brand-accent">
+                            <i class="fa-solid fa-plus text-xl"></i>
+                        </div>
+                        <a href="https://instagram.com/scr.detailing" target="_blank" class="text-white font-semibold text-sm">Voir + de photos</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION AVIS CLIENTS -->
+    <section id="avis" class="py-24 bg-[#050505] overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex flex-col items-center text-center mb-16">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6">
+                    <i class="fa-brands fa-google text-white"></i>
+                    <span class="text-white font-bold">4.9/5</span>
+                    <div class="flex text-yellow-500 text-xs">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <span class="text-gray-500 text-sm ml-1">sur Google Reviews</span>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Ce qu'ils disent de nous</h2>
+            </div>
+
+            <div class="relative max-w-6xl mx-auto">
+                <button onclick="scrollReviews(-1)" class="hidden md:flex absolute -left-12 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/5 border border-white/10 items-center justify-center text-white hover:bg-white/20 transition-all z-10">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button onclick="scrollReviews(1)" class="hidden md:flex absolute -right-12 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/5 border border-white/10 items-center justify-center text-white hover:bg-white/20 transition-all z-10">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+
+                <div id="reviews-container" class="flex gap-6 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-8 px-4">
+                    <div class="snap-center shrink-0 w-[300px] md:w-[350px] glass-card p-6 rounded-2xl bg-brand-surface relative group hover:border-brand-accent/30 transition-colors">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-sm">TB</div>
+                            <div>
+                                <h4 class="text-white font-semibold text-sm">Thomas B.</h4>
+                                <span class="text-gray-500 text-xs">Il y a 2 jours</span>
+                            </div>
+                            <div class="ml-auto flex text-yellow-500 text-xs">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 text-sm leading-relaxed">"Incroyable ! Ma voiture était dans un état catastrophique (poils de chien, boue). Elle est ressortie comme neuve. Le service à domicile est un vrai plus."</p>
+                    </div>
+                    <div class="snap-center shrink-0 w-[300px] md:w-[350px] glass-card p-6 rounded-2xl bg-brand-surface relative group hover:border-brand-accent/30 transition-colors">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center text-white font-bold text-sm">SL</div>
+                            <div>
+                                <h4 class="text-white font-semibold text-sm">Sophie L.</h4>
+                                <span class="text-gray-500 text-xs">Il y a 1 semaine</span>
+                            </div>
+                            <div class="ml-auto flex text-yellow-500 text-xs">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 text-sm leading-relaxed">"Ponctuel, poli et très professionnel. J'ai pris la formule Platinum et je ne regrette pas. Les sièges sont impeccables. Je recommande !"</p>
+                    </div>
+                    <div class="snap-center shrink-0 w-[300px] md:w-[350px] glass-card p-6 rounded-2xl bg-brand-surface relative group hover:border-brand-accent/30 transition-colors">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center text-white font-bold text-sm">MD</div>
+                            <div>
+                                <h4 class="text-white font-semibold text-sm">Marc D.</h4>
+                                <span class="text-gray-500 text-xs">Il y a 3 semaines</span>
+                            </div>
+                            <div class="ml-auto flex text-yellow-500 text-xs">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 text-sm leading-relaxed">"Super boulot sur ma Audi A3. Le détailing extérieur a vraiment ramené la brillance. Juste un petit délai pour le RDV mais ça valait le coup."</p>
+                    </div>
+                    <div class="snap-center shrink-0 w-[300px] md:w-[350px] glass-card p-6 rounded-2xl bg-brand-surface relative group hover:border-brand-accent/30 transition-colors">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-brand-accent to-blue-800 flex items-center justify-center text-white font-bold text-sm">KZ</div>
+                            <div>
+                                <h4 class="text-white font-semibold text-sm">Karim Z.</h4>
+                                <span class="text-gray-500 text-xs">Il y a 1 mois</span>
+                            </div>
+                            <div class="ml-auto flex text-yellow-500 text-xs">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 text-sm leading-relaxed">"Rien à dire. Efficace. Le gars est arrivé avec son matos, j'ai rien eu à faire. Paiement simple. Résultat top."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT FORMULAIRE & CALENDAR -->
+    <section id="contact" class="py-24 border-t border-white/5 bg-[#050505]">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-start">
+                
+                <!-- Info Colonne Gauche -->
+                <div>
+                    <h2 class="text-3xl font-bold text-white mb-6">Parlons de votre véhicule.</h2>
+                    <p class="text-gray-400 mb-10 text-lg">Choisissez votre mode de contact : message rapide ou réservation directe dans notre agenda.</p>
+                    
+                    <div class="space-y-8">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-phone text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-medium">Téléphone</h3>
+                                <p class="text-gray-500 text-sm mb-1">Du lundi au samedi, 9h-19h</p>
+                                <a href="tel:0749507140" class="text-lg font-semibold text-white hover:text-brand-accent transition-colors">07 49 50 71 40</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0">
+                                <i class="fa-brands fa-instagram text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-medium">Réseaux Sociaux</h3>
+                                <p class="text-gray-500 text-sm mb-1">Pour voir nos stories quotidiennes</p>
+                                <a href="https://instagram.com/scr.detailing" target="_blank" class="text-white hover:text-brand-accent transition-colors">@scr.detailing</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulaire / Calendrier (Colonne Droite) -->
+                <div class="glass-card p-6 md:p-8 rounded-3xl bg-brand-surface relative min-h-[600px]">
+                    
+                    <!-- SWITCH MESSAGE / BOOKING -->
+                    <div class="flex p-1 bg-white/5 rounded-xl mb-6 border border-white/10">
+                        <button onclick="switchMode('message')" id="btn-message" class="flex-1 py-2 rounded-lg text-sm font-semibold bg-brand-accent text-white shadow-lg transition-all">Message</button>
+                        <button onclick="switchMode('booking')" id="btn-booking" class="flex-1 py-2 rounded-lg text-sm font-semibold text-gray-400 hover:text-white transition-all">Réserver</button>
+                    </div>
+
+                    <!-- CONTAINER MESSAGE/FORM -->
+                    <div id="form-container" class="transition-opacity duration-300">
+                        <div id="aiBadge" class="hidden absolute -top-4 right-8 bg-gradient-to-r from-purple-600 to-brand-accent text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg animate-pulse-slow z-10 items-center gap-2 border border-white/20">
+                            <i class="fa-solid fa-robot"></i> Suggestion IA : Platinum Recommandé
+                        </div>
+
+                        <form id="contactForm" onsubmit="handleFormSubmit(event)" class="space-y-5">
+                            <div class="grid grid-cols-2 gap-5">
+                                <div class="space-y-2">
+                                    <label class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Nom</label>
+                                    <input type="text" name="name" id="field-name" required class="w-full bg-brand-surfaceLight border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-accent/50 focus:ring-1 focus:ring-brand-accent/50 transition-all placeholder-gray-700" placeholder="John Doe">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Tél</label>
+                                    <input type="tel" name="phone" id="field-phone" required class="w-full bg-brand-surfaceLight border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-accent/50 focus:ring-1 focus:ring-brand-accent/50 transition-all placeholder-gray-700" placeholder="06...">
+                                </div>
+                            </div>
+
+                            <div class="space-y-2">
+                                <label class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Adresse d'intervention</label>
+                                <input type="text" name="address" id="field-address" required class="w-full bg-brand-surfaceLight border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-accent/50 focus:ring-1 focus:ring-brand-accent/50 transition-all placeholder-gray-700" placeholder="10 rue de la Paix, Paris">
+                            </div>
+
+                            <div class="space-y-2">
+                                <label class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Service Souhaité</label>
+                                <select id="serviceSelect" name="service" class="w-full bg-brand-surfaceLight border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-accent/50 focus:ring-1 focus:ring-brand-accent/50 transition-all appearance-none cursor-pointer">
+                                    <option value="Inconnu" class="bg-brand-surface">Je ne sais pas encore</option>
+                                    <option value="Gold" class="bg-brand-surface">Formule GOLD (50€)</option>
+                                    <option value="Platinium" class="bg-brand-surface">Formule PLATINUM (100€)</option>
+                                </select>
+                            </div>
+
+                            <div class="space-y-2">
+                                <label class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Détails (Voiture, état, spécificités)</label>
+                                <textarea id="messageInput" name="message" rows="3" onkeyup="analyzeInput(this)" class="w-full bg-brand-surfaceLight border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-accent/50 focus:ring-1 focus:ring-brand-accent/50 transition-all placeholder-gray-700" placeholder="Ex: Clio 4 très sale, poils de chien..."></textarea>
+                            </div>
+
+                            <button type="submit" id="submitBtn" class="w-full bg-white text-black font-bold py-4 rounded-xl hover:bg-gray-200 transition-colors mt-2">
+                                Envoyer le message
+                            </button>
+                        </form>
+
+                        <div id="successMessage" class="hidden text-center py-12">
+                            <div class="w-16 h-16 bg-green-500/10 text-green-500 rounded-full flex items-center justify-center mx-auto mb-4 border border-green-500/20">
+                                <i class="fa-solid fa-check text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-2">Reçu !</h3>
+                            <p class="text-gray-400 text-sm">Vos données ont été sécurisées.</p>
+                            <button onclick="resetForm()" class="mt-6 text-sm text-brand-accent hover:text-white transition-colors">Nouvelle demande</button>
+                        </div>
+                        <div id="errorMessage" class="hidden text-center py-6">
+                            <p class="text-red-400 text-sm mb-2">Une erreur est survenue lors de l'envoi.</p>
+                            <button onclick="document.getElementById('errorMessage').classList.add('hidden'); document.getElementById('contactForm').classList.remove('hidden');" class="text-xs underline text-white">Réessayer</button>
+                        </div>
+                    </div>
+
+                    <!-- CONTAINER CALENDAR (Hidden by default) -->
+                    <div id="calendar-container" class="hidden h-full">
+                        <!-- Instructions -->
+                        <div class="mb-4 text-center">
+                            <p class="text-gray-400 text-sm">Veuillez sélectionner un créneau ci-dessous.</p>
+                        </div>
+                        <!-- Calendly inline widget begin -->
+                        <div id="calendly-widget" class="calendly-inline-widget" style="min-width:320px;height:500px;"></div>
+                        <!-- Calendly inline widget end -->
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER DEVELOPPÉ -->
+    <footer class="border-t border-white/5 pt-16 pb-8 bg-[#030303] text-sm">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <!-- Footer Content (Same as before) -->
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-8 h-8 bg-white rounded flex items-center justify-center">
+                            <span class="text-black font-extrabold text-xs">SCR</span>
+                        </div>
+                        <span class="font-bold text-white text-lg">Detailing.</span>
+                    </div>
+                    <p class="text-gray-500 leading-relaxed mb-6">
+                        L'expert du nettoyage automobile à domicile. Nous redonnons à votre véhicule son éclat d'origine, où que vous soyez.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="https://instagram.com/scr.detailing" target="_blank" class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-brand-accent hover:text-white transition-all"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://tiktok.com/@scr.detailing" target="_blank" class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-brand-accent hover:text-white transition-all"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="https://snapchat.com/add/scr.detailing" target="_blank" class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-yellow-400 hover:text-black transition-all"><i class="fa-brands fa-snapchat"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Navigation</h4>
+                    <ul class="space-y-3 text-gray-500">
+                        <li><a href="#accueil" class="hover:text-brand-accent transition-colors">Accueil</a></li>
+                        <li><a href="#services" class="hover:text-brand-accent transition-colors">Nos Formules</a></li>
+                        <li><a href="#galerie" class="hover:text-brand-accent transition-colors">Réalisations</a></li>
+                        <li><a href="#avis" class="hover:text-brand-accent transition-colors">Avis Clients</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Informations</h4>
+                    <ul class="space-y-3 text-gray-500">
+                        <li><button onclick="openModal('legalModal')" class="hover:text-brand-accent transition-colors text-left">Mentions Légales</button></li>
+                        <li><button onclick="openModal('cgvModal')" class="hover:text-brand-accent transition-colors text-left">CGV</button></li>
+                        <li><button onclick="openModal('cgvModal')" class="hover:text-brand-accent transition-colors text-left">Politique de Confidentialité</button></li>
+                        <li><a href="#contact" class="hover:text-brand-accent transition-colors">Contact Support</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Restez informé</h4>
+                    <p class="text-gray-500 mb-4">Recevez nos offres exclusives et conseils d'entretien.</p>
+                    <form class="flex gap-2">
+                        <input type="email" placeholder="Votre email" class="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-white w-full focus:outline-none focus:border-brand-accent text-xs">
+                        <button type="button" class="bg-brand-accent text-white px-3 py-2 rounded-lg font-bold hover:bg-blue-600 transition-colors">OK</button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-600">© 2024 SCR Detailing. Tous droits réservés.</p>
+                <p class="text-gray-600 text-xs flex items-center gap-1">
+                    <i class="fa-solid fa-lock"></i> Paiement sécurisé et données chiffrées.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL MENTIONS LEGALES (Same as before) -->
+    <div id="legalModal" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal('legalModal')"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl bg-[#0a0a0a] border border-white/10 rounded-2xl shadow-2xl p-8 max-h-[80vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6 border-b border-white/5 pb-4">
+                <h3 class="text-2xl font-bold text-white">Mentions Légales</h3>
+                <button onclick="closeModal('legalModal')" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <div class="space-y-4 text-gray-400 text-sm leading-relaxed">
+                <h4 class="text-white font-bold">1. Éditeur du site</h4>
+                <p>Le site SCR Detailing est édité par SCR Detailing, auto-entreprise immatriculée sous le numéro SIRET [VOTRE NUMERO].<br>Siège social : [VOTRE ADRESSE].<br>Directeur de la publication : [VOTRE NOM].</p>
+                <h4 class="text-white font-bold">2. Hébergement</h4>
+                <p>Ce site est hébergé par [NOM HEBERGEUR EX: OVH, VERCEL], situé à [ADRESSE HEBERGEUR].</p>
+                <h4 class="text-white font-bold">3. Propriété intellectuelle</h4>
+                <p>L'ensemble de ce site relève de la législation française et internationale sur le droit d'auteur et la propriété intellectuelle. Tous les droits de reproduction sont réservés.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL CGV (Same as before) -->
+    <div id="cgvModal" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal('cgvModal')"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl bg-[#0a0a0a] border border-white/10 rounded-2xl shadow-2xl p-8 max-h-[80vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6 border-b border-white/5 pb-4">
+                <h3 class="text-2xl font-bold text-white">Conditions Générales de Vente</h3>
+                <button onclick="closeModal('cgvModal')" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <div class="space-y-4 text-gray-400 text-sm leading-relaxed">
+                <h4 class="text-white font-bold">1. Objet</h4>
+                <p>Les présentes CGV régissent les relations contractuelles entre SCR Detailing et ses clients dans le cadre de la prestation de services de nettoyage automobile à domicile.</p>
+                <h4 class="text-white font-bold">2. Tarifs et Paiement</h4>
+                <p>Les tarifs sont indiqués en euros TTC. Le paiement s'effectue à la fin de la prestation par espèces ou virement instantané. SCR Detailing se réserve le droit de modifier ses prix à tout moment.</p>
+                <h4 class="text-white font-bold">3. Annulation</h4>
+                <p>Toute annulation de rendez-vous doit être effectuée au moins 24 heures à l'avance. Dans le cas contraire, une indemnité forfaitaire pourra être réclamée.</p>
+                <h4 class="text-white font-bold">4. Responsabilité</h4>
+                <p>SCR Detailing s'engage à fournir ses services avec diligence. Toutefois, l'entreprise ne saurait être tenue responsable des dommages préexistants sur le véhicule du client.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS Logic -->
+    <script>
+        // CONFIGURATION
+        const MAKE_WEBHOOK_URL = 'https://hook.eu2.make.com/blzigtyw08gie4q94gt6xqiv2ank52sa';
+        
+        // --- VOS LIENS CALENDLY (A REMPLACER) ---
+        // Créez deux événements dans Calendly, un de 1h30 (Gold) et un de 2h30 (Platinum)
+        // Ajoutez 30min de "buffer" avant/après dans les réglages Calendly
+        const CALENDLY_GOLD_URL = 'https://calendly.com/rafael-gmille/new-meeting'; // Lien par défaut (Gold)
+        const CALENDLY_PLATINUM_URL = 'https://calendly.com/rafael-gmille/new-meeting'; // Remplacez par le lien Platinum si vous en créez un 2ème
+
+        let currentMode = 'message';
+        let savedFormData = null;
+
+        // Gestion Menu Mobile
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+        
+        // Gestion Switch Contact / Agenda
+        function switchMode(mode) {
+            currentMode = mode;
+            const btnMessage = document.getElementById('btn-message');
+            const btnBooking = document.getElementById('btn-booking');
+            const submitBtn = document.getElementById('submitBtn');
+            const formContainer = document.getElementById('form-container');
+            const calendarContainer = document.getElementById('calendar-container');
+            
+            // Si on passe en mode booking, on ne cache pas le formulaire tout de suite
+            // Le client doit d'abord remplir le formulaire
+            
+            if (mode === 'booking') {
+                // Style boutons
+                btnMessage.classList.remove('bg-brand-accent', 'text-white', 'shadow-lg');
+                btnMessage.classList.add('text-gray-400');
+                btnBooking.classList.remove('text-gray-400');
+                btnBooking.classList.add('bg-brand-accent', 'text-white', 'shadow-lg');
+                
+                // Change le texte du bouton
+                submitBtn.innerText = "Choisir un créneau";
+                
+                // Si on a déjà affiché le calendrier, on le montre
+                if(calendarContainer.classList.contains('active-view')) {
+                    formContainer.classList.add('hidden');
+                    calendarContainer.classList.remove('hidden');
+                } else {
+                    formContainer.classList.remove('hidden');
+                    calendarContainer.classList.add('hidden');
+                }
+
+            } else {
+                // Mode Message
+                formContainer.classList.remove('hidden');
+                calendarContainer.classList.add('hidden');
+                
+                // Style boutons
+                btnBooking.classList.remove('bg-brand-accent', 'text-white', 'shadow-lg');
+                btnBooking.classList.add('text-gray-400');
+                btnMessage.classList.remove('text-gray-400');
+                btnMessage.classList.add('bg-brand-accent', 'text-white', 'shadow-lg');
+                
+                // Change le texte du bouton
+                submitBtn.innerText = "Envoyer le message";
+            }
+        }
+
+        // Handle Form Submit (Dual Logic)
+        async function handleFormSubmit(e) {
+            e.preventDefault();
+            const form = document.getElementById('contactForm');
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+            data.submittedAt = new Date().toLocaleString('fr-FR');
+            
+            // Add IA Context
+            data.aiContext = "Demande standard";
+            if(document.getElementById('aiBadge').classList.contains('flex')) {
+                data.aiContext = "⚠️ Attention: Mots-clés 'sale' détectés.";
+            }
+
+            if (currentMode === 'booking') {
+                // --- MODE RÉSERVATION : 1. Sauver Data -> 2. Montrer Calendly ---
+                savedFormData = data;
+                
+                // Déterminer quel lien Calendly utiliser
+                let calendlyUrl = CALENDLY_GOLD_URL;
+                if(data.service === 'Platinium') {
+                    calendlyUrl = CALENDLY_PLATINUM_URL;
+                }
+                
+                // Ajouter paramètres de style et langue
+                calendlyUrl += '?hide_event_type_details=1&hide_gdpr_banner=1&background_color=121212&text_color=ffffff&primary_color=3b82f6&locale=fr';
+                
+                // Pré-remplir Nom/Email si possible (Calendly supporte name/email/phone en param URL)
+                // Note: Calendly n'accepte pas l'adresse en paramètre standard sans API complexe
+                calendlyUrl += `&name=${encodeURIComponent(data.name)}`;
+                
+                // Mettre à jour le widget
+                const widgetContainer = document.getElementById('calendly-widget');
+                // Clear previous widget content to ensure clean re-init
+                widgetContainer.innerHTML = '';
+                widgetContainer.setAttribute('data-url', calendlyUrl);
+                
+                // Recharger le widget Calendly pour prendre en compte le changement
+                if(window.Calendly) {
+                    window.Calendly.initInlineWidget({
+                     url: calendlyUrl,
+                     parentElement: widgetContainer
+                   });
+                }
+
+                // UI Switch
+                document.getElementById('form-container').classList.add('hidden');
+                document.getElementById('calendar-container').classList.remove('hidden');
+                document.getElementById('calendar-container').classList.add('active-view');
+                
+            } else {
+                // --- MODE MESSAGE : Envoi Direct Webhook ---
+                const btn = document.getElementById('submitBtn');
+                const originalText = btn.innerText;
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Envoi...';
+                btn.classList.add('opacity-75', 'cursor-not-allowed');
+
+                try {
+                    if (!MAKE_WEBHOOK_URL.includes('VOTRE_ID')) {
+                        await fetch(MAKE_WEBHOOK_URL, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(data)
+                        });
+                    }
+                    form.classList.add('hidden');
+                    document.getElementById('successMessage').classList.remove('hidden');
+                } catch (error) {
+                    console.error(error);
+                    document.getElementById('errorMessage').classList.remove('hidden');
+                } finally {
+                    btn.innerText = originalText;
+                    btn.classList.remove('opacity-75', 'cursor-not-allowed');
+                }
+            }
+        }
+
+        // LISTEN TO CALENDLY EVENTS (Pour envoyer Webhook après réservation)
+        function isCalendlyEvent(e) {
+            try {
+                // Check if e.data exists and has an 'event' property that is a string
+                return e.data && e.data.event && typeof e.data.event === 'string' && e.data.event.indexOf('calendly') === 0;
+            } catch (err) {
+                // In case of any cross-origin access error or unexpected data structure
+                return false;
+            }
+        }
+
+        window.addEventListener('message', function(e) {
+            if(isCalendlyEvent(e)) {
+                // Si l'événement est "booking scheduled"
+                if (e.data.event === 'calendly.event_scheduled') {
+                    console.log("RDV Confirmé sur Calendly !");
+                    
+                    // Si on a des données de formulaire sauvegardées, on les envoie à Make
+                    if (savedFormData) {
+                        const finalData = { ...savedFormData, status: "Réservation Calendly Confirmée ✅" };
+                        
+                        // Envoi discret au Webhook
+                        if (!MAKE_WEBHOOK_URL.includes('VOTRE_ID')) {
+                            fetch(MAKE_WEBHOOK_URL, {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify(finalData)
+                            });
+                        }
+                        
+                        // Afficher succès (optionnel, Calendly montre déjà une confirm)
+                        // On pourrait rediriger ou cacher le widget ici
+                    }
+                }
+            }
+        });
+
+        // Gestion Modals et autres...
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+        function preselectService(serviceName) {
+            const select = document.getElementById('serviceSelect');
+            select.value = serviceName;
+            document.getElementById('contact').scrollIntoView();
+        }
+        function scrollReviews(direction) {
+            const container = document.getElementById('reviews-container');
+            const scrollAmount = 320; 
+            container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+        }
+        function analyzeInput(textarea) {
+            const text = textarea.value.toLowerCase();
+            const keywords = ['sale', 'boue', 'poils', 'chien', 'tache', 'vomis', 'profond', 'complet'];
+            const badge = document.getElementById('aiBadge');
+            const select = document.getElementById('serviceSelect');
+            const hasKeyword = keywords.some(word => text.includes(word));
+            if (hasKeyword && select.value !== 'Platinium') {
+                badge.classList.remove('hidden');
+                badge.classList.add('flex');
+            } else {
+                badge.classList.add('hidden');
+                badge.classList.remove('flex');
+            }
+        }
+        function resetForm() {
+            document.getElementById('contactForm').reset();
+            document.getElementById('contactForm').classList.remove('hidden');
+            document.getElementById('successMessage').classList.add('hidden');
+            document.getElementById('errorMessage').classList.add('hidden');
+            document.getElementById('calendar-container').classList.add('hidden');
+            document.getElementById('calendar-container').classList.remove('active-view');
+            switchMode('message');
+        }
+    </script>
+    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+</body>
+</html>
