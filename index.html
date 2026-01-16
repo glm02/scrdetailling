@@ -2,9 +2,13 @@
 <html lang="fr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SCR Detailing | Cosmétique Automobile Grenoble & Voiron</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>SCR Detailing | Nettoyage Auto Grenoble & Voiron</title>
     
+    <!-- SEO & Social -->
+    <meta name="description" content="Detailing automobile de luxe à domicile sur Grenoble et Voiron. Nettoyage intérieur et extérieur haute précision.">
+    <meta name="theme-color" content="#080808">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -21,271 +25,366 @@
     </script>
 
     <style>
-        body { background-color: #080808; color: #ffffff; cursor: default; overflow-x: hidden; }
-        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.05); }
-        .hero-mask { background: linear-gradient(to bottom, rgba(8,8,8,0.5) 0%, rgba(8,8,8,1) 100%); }
+        body { background-color: #080808; color: #ffffff; -webkit-tap-highlight-color: transparent; overflow-x: hidden; }
+        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .hero-mask { background: linear-gradient(to bottom, rgba(8,8,8,0.2) 0%, rgba(8,8,8,1) 100%); }
         
-        /* Animations */
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        /* Animations fluides */
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* Notification Toast */
+        /* Notification Toast Mobile-Optimized */
         #live-toast { 
-            position: fixed; bottom: 20px; left: -400px; z-index: 100; transition: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            max-width: 280px;
+            position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%);
+            z-index: 150; width: 90%; max-width: 350px;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        #live-toast.active { left: 20px; }
+        #live-toast.active { bottom: 110px; } 
 
-        @media (max-width: 640px) {
-            #live-toast { left: 50% !important; transform: translateX(-50%) translateY(200px); bottom: 100px; }
-            #live-toast.active { transform: translateX(-50%) translateY(0); }
+        /* Custom Checkbox larger for mobile */
+        input[type="checkbox"] { width: 1.5rem; height: 1.5rem; cursor: pointer; }
+
+        @keyframes pulse-border {
+            0% { border-color: rgba(37, 99, 235, 0.4); }
+            50% { border-color: rgba(37, 99, 235, 1); }
+            100% { border-color: rgba(37, 99, 235, 0.4); }
         }
+        .active-pack { animation: pulse-border 2s infinite; border-width: 2px !important; }
 
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-thumb { background: #2563eb; border-radius: 10px; }
+        .scroll-container { -webkit-overflow-scrolling: touch; }
+
+        /* Calendly Custom Size */
+        .calendly-inline-widget { height: 580px !important; }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased font-sans">
 
-    <div class="bg-brand-accent text-white text-[10px] font-bold py-3 text-center uppercase tracking-[0.4em] z-[100] relative px-4">
-        ⭐ INTERVENTION À DOMICILE : GRENOBLE, VOIRON & PAYS VOIRONNAIS ⭐
+    <!-- ANNONCE -->
+    <div class="bg-brand-accent text-white text-[10px] font-bold py-3 text-center uppercase tracking-[0.3em] z-[100] relative px-4">
+        🚀 INTERVENTION À DOMICILE : GRENOBLE, VOIRON & PAYS VOIRONNAIS 🚀
     </div>
 
-    <nav class="sticky top-0 z-[60] glass border-b border-white/5" id="navbar">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="#" class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center font-black text-black text-xs shadow-xl">SCR</div>
-                <span class="font-bold text-xl tracking-tighter uppercase">Detailing<span class="text-brand-accent">.</span></span>
+    <!-- NAVIGATION -->
+    <nav class="sticky top-0 z-[60] glass border-b border-white/10" id="navbar">
+        <div class="max-w-7xl mx-auto px-5 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2">
+                <div class="w-9 h-9 bg-white rounded-xl flex items-center justify-center font-black text-black text-[10px] shadow-lg">SCR</div>
+                <span class="font-bold text-xl tracking-tighter uppercase text-white">Detailing<span class="text-brand-accent">.</span></span>
             </a>
-            <div class="hidden lg:flex items-center space-x-10 text-[11px] font-bold uppercase tracking-widest text-gray-400">
-                <a href="#expertise" class="hover:text-white transition-colors">Expertise</a>
-                <a href="#realisations" class="hover:text-white transition-colors">Réalisations</a>
-                <a href="#shop" class="hover:text-white transition-colors">Tarifs</a>
-                <a href="#contact" class="bg-white text-black px-8 py-3.5 rounded-2xl hover:bg-brand-accent hover:text-white transition-all shadow-lg">Réserver</a>
+            
+            <!-- Desktop Links -->
+            <div class="hidden lg:flex items-center space-x-8 text-[11px] font-extrabold uppercase tracking-widest text-white">
+                <a href="#expertise" class="hover:text-brand-accent transition-colors">Expertise</a>
+                <a href="#realisations" class="hover:text-brand-accent transition-colors">Réalisations</a>
+                <a href="#shop" class="hover:text-brand-accent transition-colors">Tarifs</a>
+                <a href="#contact" class="bg-white text-black px-6 py-3 rounded-2xl hover:bg-brand-accent hover:text-white transition-all shadow-lg">Réserver</a>
             </div>
-            <button class="lg:hidden text-white p-2"><i class="fa-solid fa-bars-staggered text-2xl"></i></button>
+
+            <!-- Mobile Menu Toggle -->
+            <button onclick="toggleMenu()" class="lg:hidden text-white p-2 focus:outline-none">
+                <i id="menu-icon" class="fa-solid fa-bars-staggered text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-brand-black/98 backdrop-blur-2xl border-t border-white/10 absolute w-full left-0 p-8 space-y-6 text-center animate-fade-in">
+            <a href="#expertise" onclick="toggleMenu()" class="block text-lg font-bold uppercase tracking-widest text-white">L'Expertise</a>
+            <a href="#realisations" onclick="toggleMenu()" class="block text-lg font-bold uppercase tracking-widest text-white">Réalisations</a>
+            <a href="#shop" onclick="toggleMenu()" class="block text-lg font-bold uppercase tracking-widest text-white">Nos Tarifs</a>
+            <a href="#contact" onclick="toggleMenu()" class="block bg-brand-accent text-white py-5 rounded-2xl font-bold uppercase tracking-widest text-sm">Prendre RDV</a>
         </div>
     </nav>
 
-    <section class="relative min-h-[90vh] flex items-center px-6 overflow-hidden">
+    <!-- HERO SECTION -->
+    <section class="relative min-h-[85vh] md:min-h-[95vh] flex items-center px-6 overflow-hidden">
         <div class="absolute inset-0 -z-10">
-            <img src="https://images.pexels.com/photos/16505291/pexels-photo-16505291.jpeg" class="w-full h-full object-cover opacity-50 grayscale" alt="Background">
+            <img src="https://images.pexels.com/photos/16505291/pexels-photo-16505291.jpeg" class="w-full h-full object-cover opacity-50" alt="Lavage auto de luxe">
             <div class="absolute inset-0 hero-mask"></div>
         </div>
         
-        <div class="max-w-7xl mx-auto w-full z-20">
-            <div class="max-w-3xl space-y-10">
-                <div class="reveal inline-flex items-center gap-2 px-4 py-2 rounded-full glass border-brand-accent/20">
-                    <span class="w-2 h-2 rounded-full bg-brand-accent animate-ping"></span>
-                    <span class="text-[10px] font-bold uppercase tracking-widest text-brand-accent">Isère : Grenoble / Voiron</span>
+        <div class="max-w-7xl mx-auto w-full z-10">
+            <div class="max-w-4xl space-y-10 md:space-y-10">
+                <div class="reveal inline-flex items-center gap-2 px-5 py-2 rounded-full glass border-brand-accent/30">
+                    <span class="w-2.5 h-2.5 rounded-full bg-brand-accent animate-ping"></span>
+                    <span class="text-[12px] font-black uppercase tracking-widest text-white">Secteur Isère : 38</span>
                 </div>
-                <h1 class="reveal text-5xl md:text-8xl font-black tracking-tighter leading-[0.9]">
-                    L'ART DE LA<br>PERFECTION <br><span class="text-brand-accent italic">AUTOMOBILE.</span>
+                <h1 class="reveal text-5xl sm:text-7xl md:text-9xl font-black tracking-tighter leading-[1.1] md:leading-[0.9] text-white">
+                    L'ART DE LA<br>PERFECTION <br><span class="text-brand-accent italic underline decoration-brand-accent decoration-4 underline-offset-8">AUTOMOBILE.</span>
                 </h1>
-                <p class="reveal text-gray-400 text-lg md:text-xl font-light leading-relaxed max-w-xl delay-200">
-                    Plus besoin de vous déplacer. SCR Detailing apporte le soin haute-couture directement dans votre garage ou sur votre lieu de travail.
+                <p class="reveal text-white text-lg md:text-2xl font-semibold leading-relaxed max-w-2xl delay-100">
+                    Votre temps est précieux. Nous apportons le savoir-faire du detailing premium directement chez vous, à Grenoble et Voiron.
                 </p>
-                <div class="reveal flex flex-wrap gap-6 pt-6 delay-300">
-                    <a href="#shop" class="w-full sm:w-auto bg-brand-accent text-white px-12 py-6 rounded-[2rem] font-black uppercase tracking-widest text-[11px] hover:shadow-2xl hover:shadow-brand-accent/40 transition-all text-center">Voir nos packs</a>
-                    <a href="#realisations" class="w-full sm:w-auto px-12 py-6 rounded-[2rem] font-black uppercase tracking-widest text-[11px] glass hover:bg-white hover:text-black transition-all text-center">Nos réalisations</a>
+                <div class="reveal flex flex-col sm:flex-row gap-5 pt-6 delay-200">
+                    <a href="#shop" class="w-full sm:w-auto bg-brand-accent text-white px-12 py-6 rounded-[2rem] font-black uppercase tracking-widest text-[12px] text-center shadow-2xl shadow-brand-accent/40 transition-all hover:scale-105">Consulter les tarifs</a>
+                    <a href="#realisations" class="w-full sm:w-auto px-12 py-6 rounded-[2rem] font-black uppercase tracking-widest text-[12px] glass hover:bg-white hover:text-black transition-all text-center text-white">Voir nos travaux</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="expertise" class="py-32 max-w-7xl mx-auto px-6">
-        <div class="grid lg:grid-cols-2 gap-24 items-center">
-            <div class="space-y-12">
+    <!-- EXPERTISE -->
+    <section id="expertise" class="py-24 md:py-40 max-w-7xl mx-auto px-6">
+        <div class="grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
+            <div class="space-y-8 md:space-y-12">
                 <div class="reveal space-y-4">
-                    <h2 class="text-brand-accent font-bold uppercase tracking-[0.4em] text-[10px]">Excellence Technique</h2>
-                    <h3 class="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none">Un Savoir-Faire<br>Millimétré.</h3>
+                    <h2 class="text-brand-accent font-black uppercase tracking-[0.4em] text-[12px]">Notre engagement</h2>
+                    <h3 class="text-4xl md:text-7xl font-black uppercase tracking-tighter leading-tight text-white">Un Soin<br>Haute-Précision.</h3>
                 </div>
-                <div class="reveal space-y-8 text-gray-400 leading-relaxed delay-100">
-                    <p class="text-lg">
-                        Nous n'utilisons que des pinceaux de précision et des produits pH neutre haut de gamme (Meguiar's, Alchimy7) pour sublimer votre vernis sans l'agresser.
+                <div class="reveal space-y-8 text-white leading-relaxed text-base md:text-xl font-medium">
+                    <p>
+                        À la différence d'un lavage classique, nous utilisons des pinceaux de précision et des produits certifiés (Meguiar's, Alchimy7) respectueux de votre vernis.
                     </p>
+                    <div class="p-8 glass rounded-[2.5rem] border-l-8 border-brand-accent bg-brand-surface">
+                        <p class="text-white font-black italic text-lg leading-tight">"Chaque détail compte pour sublimer votre investissement automobile."</p>
+                    </div>
                 </div>
             </div>
-            <div class="reveal relative delay-200">
-                <div class="absolute -inset-10 bg-brand-accent/20 blur-[100px] opacity-20"></div>
-                <img src="https://images.pexels.com/photos/17045050/pexels-photo-17045050.jpeg" class="relative rounded-[3rem] border border-white/10 shadow-3xl" alt="Soin carrosserie">
+            <div class="reveal relative delay-100">
+                <div class="absolute -inset-10 bg-brand-accent/20 blur-[100px] opacity-30"></div>
+                <img src="https://images.pexels.com/photos/17045050/pexels-photo-17045050.jpeg" class="relative rounded-[3rem] border border-white/20 shadow-3xl w-full h-auto object-cover" alt="Detailing carrosserie">
             </div>
         </div>
     </section>
 
-    <section id="realisations" class="py-32 bg-brand-surface/30">
+    <!-- PORTFOLIO -->
+    <section id="realisations" class="py-24 md:py-40 bg-brand-surface/50">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="reveal text-center mb-20">
-                <h3 class="text-5xl font-black uppercase tracking-tighter">Réalisations Récentes.</h3>
+            <div class="reveal text-center mb-16 md:mb-24">
+                <h3 class="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white">Réalisations Récentes.</h3>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                <div class="reveal shiny-card rounded-[3rem] overflow-hidden group h-[400px] md:h-[500px]">
-                    <img src="https://images.pexels.com/photos/6872582/pexels-photo-6872582.jpeg" class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-1000">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-                    <div class="absolute bottom-10 left-10 right-10 p-8 glass rounded-[2rem]">
-                        <span class="text-[10px] font-bold text-brand-accent uppercase tracking-[0.3em] mb-2 block text-center">Cosmétique Intérieure</span>
-                        <h4 class="text-2xl font-black uppercase text-center">Rénovation Cuirs & Habitacle</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                <!-- Intérieur -->
+                <div class="reveal relative rounded-[3rem] overflow-hidden group h-[400px] md:h-[600px] shadow-2xl border border-white/10">
+                    <img src="https://images.pexels.com/photos/6872582/pexels-photo-6872582.jpeg" class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-1000" alt="Rénovation intérieur cuir">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-10">
+                        <span class="text-[10px] font-black text-brand-accent uppercase tracking-[0.4em] mb-3 block">Cosmétique Intérieure</span>
+                        <h4 class="text-2xl md:text-4xl font-black uppercase text-white tracking-tighter">Rénovation Cuirs & Habitacle</h4>
                     </div>
                 </div>
-                <div class="reveal shiny-card rounded-[3rem] overflow-hidden group h-[400px] md:h-[500px] delay-100">
-                    <img src="https://images.pexels.com/photos/20856507/pexels-photo-20856507.jpeg" class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-1000">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-                    <div class="absolute bottom-10 left-10 right-10 p-8 glass rounded-[2rem]">
-                        <span class="text-[10px] font-bold text-brand-accent uppercase tracking-[0.3em] mb-2 block text-center">Détail Extérieur</span>
-                        <h4 class="text-2xl font-black uppercase text-center">Décontamination Jantes HD</h4>
+                <!-- Jantes -->
+                <div class="reveal relative rounded-[3rem] overflow-hidden group h-[400px] md:h-[600px] shadow-2xl delay-100 border border-white/10">
+                    <img src="https://images.pexels.com/photos/20856507/pexels-photo-20856507.jpeg" class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-1000" alt="Nettoyage jantes haute pression">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-10">
+                        <span class="text-[10px] font-black text-brand-accent uppercase tracking-[0.4em] mb-3 block">Détail Extérieur</span>
+                        <h4 class="text-2xl md:text-4xl font-black uppercase text-white tracking-tighter">Décontamination Jantes HD</h4>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="shop" class="py-32 bg-brand-black">
+    <!-- TARIFS -->
+    <section id="shop" class="py-24 md:py-40 bg-brand-black">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="reveal text-center mb-24 space-y-4">
-                <h2 class="text-brand-accent font-bold uppercase tracking-[0.4em] text-[10px]">Le Menu des Soins</h2>
-                <h3 class="text-5xl md:text-7xl font-black uppercase tracking-tighter">Nos Formules.</h3>
+            <div class="reveal text-center mb-20 md:mb-32 space-y-6">
+                <h2 class="text-brand-accent font-black uppercase tracking-[0.4em] text-[12px]">Le Menu des Soins</h2>
+                <h3 class="text-4xl md:text-8xl font-black uppercase tracking-tighter leading-tight text-white">Nos Formules.</h3>
                 
-                <div class="flex flex-wrap justify-center gap-4 pt-12">
-                    <label class="flex items-center gap-3 cursor-pointer group glass px-6 py-4 rounded-3xl hover:border-brand-accent/50 transition-all active:scale-95">
-                        <input type="checkbox" id="add-suv" onchange="updateTotal()" class="w-5 h-5 rounded border-white/10 bg-white/5 text-brand-accent focus:ring-0">
-                        <span class="text-gray-300 font-bold text-[10px] uppercase tracking-widest">SUV / Berline (+15€)</span>
+                <!-- Options Mobile Optimisées -->
+                <div class="flex flex-col md:flex-row justify-center gap-5 pt-10">
+                    <label class="flex items-center justify-between md:justify-center gap-6 cursor-pointer glass px-8 py-6 rounded-[2rem] hover:border-brand-accent transition-all">
+                        <span class="text-white font-black text-[11px] uppercase tracking-widest">Format SUV / Berline (+15€)</span>
+                        <input type="checkbox" id="add-suv" onchange="updateTotal()" class="rounded-lg border-white/20 bg-white/5 text-brand-accent focus:ring-0">
                     </label>
-                    <label class="flex items-center gap-3 cursor-pointer group glass px-6 py-4 rounded-3xl hover:border-brand-accent/50 transition-all active:scale-95">
-                        <input type="checkbox" id="add-hair" onchange="updateTotal()" class="w-5 h-5 rounded border-white/10 bg-white/5 text-brand-accent focus:ring-0">
-                        <span class="text-gray-300 font-bold text-[10px] uppercase tracking-widest">Poils d'animaux (+20€)</span>
+                    <label class="flex items-center justify-between md:justify-center gap-6 cursor-pointer glass px-8 py-6 rounded-[2rem] hover:border-brand-accent transition-all">
+                        <span class="text-white font-black text-[11px] uppercase tracking-widest">Poils d'animaux (+20€)</span>
+                        <input type="checkbox" id="add-hair" onchange="updateTotal()" class="rounded-lg border-white/20 bg-white/5 text-brand-accent focus:ring-0">
                     </label>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-                <div class="reveal shiny-card glass p-8 md:p-12 rounded-[4rem] flex flex-col hover:border-white/20 transition-all group">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 max-w-6xl mx-auto">
+                <!-- GOLD -->
+                <div id="card-Gold" class="reveal glass p-10 md:p-16 rounded-[4rem] flex flex-col hover:border-white/30 transition-all group relative border-2 border-transparent bg-brand-surface/40">
                     <div class="mb-12">
                         <div class="flex justify-between items-start mb-8">
                             <div>
-                                <h3 class="text-3xl font-black uppercase mb-1">Pack Gold</h3>
-                                <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Entretien Standard</p>
+                                <h3 class="text-3xl md:text-4xl font-black uppercase mb-2 text-white">Pack Gold</h3>
+                                <p class="text-[11px] font-black text-brand-accent uppercase tracking-widest">Entretien Standard</p>
                             </div>
-                            <div class="text-5xl font-black tracking-tighter">50€</div>
+                            <div class="text-5xl md:text-6xl font-black tracking-tighter text-white">50€</div>
                         </div>
-                        <ul class="space-y-4 text-sm font-medium text-gray-300">
-                            <li><i class="fa-solid fa-check text-brand-accent mr-3"></i>Aspiration complète habitacle & coffre</li>
-                            <li><i class="fa-solid fa-check text-brand-accent mr-3"></i>Nettoyage des plastiques (Pinceaux)</li>
-                            <li><i class="fa-solid fa-check text-brand-accent mr-3"></i>Nettoyage des vitres intérieures</li>
-                            <li><i class="fa-solid fa-check text-brand-accent mr-3"></i>Dressing pneus & Parfum offert</li>
+                        <ul class="space-y-5 text-sm md:text-lg font-bold text-white">
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-accent mr-4"></i>Aspiration chirurgicale</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-accent mr-4"></i>Plastiques aux pinceaux</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-accent mr-4"></i>Vitrages HD sans traces</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-accent mr-4"></i>Parfum haut de gamme offert</li>
                         </ul>
                     </div>
-                    <button onclick="selectBase('Gold', 50)" class="mt-auto w-full py-6 bg-white text-black font-black uppercase tracking-widest text-[11px] rounded-3xl hover:bg-brand-accent hover:text-white transition-all">Sélectionner Gold</button>
+                    <button onclick="selectBase('Gold', 50)" class="mt-auto w-full py-6 bg-white text-black font-black uppercase tracking-widest text-xs rounded-3xl hover:bg-brand-accent hover:text-white transition-all shadow-xl">Sélectionner Gold</button>
                 </div>
 
-                <div class="reveal shiny-card p-8 md:p-12 rounded-[4rem] border border-brand-accent/30 bg-gradient-to-br from-brand-accent/10 to-transparent flex flex-col delay-100">
+                <!-- PLATINUM -->
+                <div id="card-Platinum" class="reveal p-10 md:p-16 rounded-[4rem] border-2 border-brand-accent/40 bg-gradient-to-br from-brand-accent/20 to-brand-surface flex flex-col delay-100 shadow-2xl relative">
+                    <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-brand-accent text-white text-[10px] font-black px-6 py-2 rounded-full tracking-[0.2em] uppercase shadow-lg shadow-brand-accent/30">Pack Plus Populaire</div>
                     <div class="mb-12">
                         <div class="flex justify-between items-start mb-8">
                             <div>
-                                <h3 class="text-3xl font-black uppercase mb-1 text-brand-accent">Pack Platinum</h3>
-                                <p class="text-[10px] font-bold text-brand-accent uppercase tracking-widest">Rénovation Totale</p>
+                                <h3 class="text-3xl md:text-4xl font-black uppercase mb-2 text-brand-accent">Pack Platinum</h3>
+                                <p class="text-[11px] font-black text-white/80 uppercase tracking-widest">Rénovation Totale</p>
                             </div>
-                            <div class="text-5xl font-black tracking-tighter">100€</div>
+                            <div class="text-5xl md:text-6xl font-black tracking-tighter text-white">100€</div>
                         </div>
-                        <ul class="space-y-4 text-sm font-medium text-white">
-                            <li class="font-bold text-brand-accent italic underline decoration-2 underline-offset-4">Tout le pack Gold inclus +</li>
-                            <li><i class="fa-solid fa-bolt text-brand-accent mr-3"></i>Shampouinage sièges (Injection/Extraction)</li>
-                            <li><i class="fa-solid fa-bolt text-brand-accent mr-3"></i>Nettoyage profond moquettes & tapis</li>
-                            <li><i class="fa-solid fa-bolt text-brand-accent mr-3"></i>Traitement des contours de portes</li>
+                        <ul class="space-y-5 text-sm md:text-lg font-bold text-white">
+                            <li class="font-black text-brand-accent italic mb-4">Contenu Pack Gold inclus +</li>
+                            <li class="flex items-center"><i class="fa-solid fa-bolt text-brand-accent mr-4"></i>Shampouinage sièges (Extraction)</li>
+                            <li class="flex items-center"><i class="fa-solid fa-bolt text-brand-accent mr-4"></i>Nettoyage moquettes & tapis</li>
+                            <li class="flex items-center"><i class="fa-solid fa-bolt text-brand-accent mr-4"></i>Désinfection totale vapeur</li>
                         </ul>
                     </div>
-                    <button onclick="selectBase('Platinum', 100)" class="mt-auto w-full py-6 bg-brand-accent text-white font-black uppercase tracking-widest text-[11px] rounded-3xl shadow-xl shadow-brand-accent/20 hover:scale-[1.02] transition-all">Sélectionner Platinum</button>
+                    <button onclick="selectBase('Platinum', 100)" class="mt-auto w-full py-6 bg-brand-accent text-white font-black uppercase tracking-widest text-xs rounded-3xl shadow-2xl shadow-brand-accent/30 hover:scale-[1.03] transition-all">Sélectionner Platinum</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <div id="checkout-bar" class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-4xl z-[100] hidden">
-        <div class="glass rounded-[2.5rem] p-6 md:p-8 shadow-3xl flex flex-col md:flex-row items-center justify-between gap-6 border border-brand-accent/40 bg-black/90 backdrop-blur-3xl">
-            <div class="flex items-center gap-10">
+    <!-- STICKY BOTTOM BAR -->
+    <div id="checkout-bar" class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[92%] max-w-4xl z-[120] hidden animate-in slide-in-from-bottom duration-500">
+        <div class="glass rounded-[2.5rem] p-6 md:p-8 shadow-3xl flex flex-col md:flex-row items-center justify-between gap-6 border border-brand-accent/60 bg-black/95 backdrop-blur-3xl">
+            <div class="flex items-center justify-between w-full md:w-auto md:gap-12">
                 <div>
-                    <span class="text-[9px] uppercase font-bold text-gray-500 tracking-[0.3em]">Budget Estimé</span>
-                    <div class="text-3xl font-black text-white" id="final-price">0€</div>
+                    <span class="text-[9px] uppercase font-black text-white/60 tracking-[0.3em]">Budget Total</span>
+                    <div class="text-3xl md:text-4xl font-black text-white" id="final-price">0€</div>
                 </div>
-                <div class="hidden md:block">
-                    <span class="text-[9px] uppercase font-bold text-gray-500 tracking-[0.3em]">Formule</span>
-                    <div class="text-xs font-black uppercase text-brand-accent" id="chosen-pack">-</div>
+                <div class="text-right md:text-left">
+                    <span class="text-[9px] uppercase font-black text-white/60 tracking-[0.3em]">Pack Choisi</span>
+                    <div class="text-sm font-black uppercase text-brand-accent" id="chosen-pack">-</div>
                 </div>
             </div>
-            <a href="#contact" class="w-full md:w-auto bg-brand-accent text-white px-10 py-5 rounded-[2rem] font-black uppercase text-[11px] tracking-widest text-center shadow-xl">Réserver mon créneau</a>
+            <a href="#contact" class="w-full md:w-auto bg-brand-accent text-white px-12 py-5 rounded-[2rem] font-black uppercase text-[11px] tracking-widest text-center shadow-2xl hover:bg-blue-600 transition-all">Réserver mon créneau</a>
         </div>
     </div>
 
-    <section id="contact" class="py-40 bg-brand-black border-t border-white/5">
-        <div class="max-w-5xl mx-auto px-6 text-center space-y-16">
+    <!-- CALENDLY (SIZE REDUCED & COMPACTED) -->
+    <section id="contact" class="py-24 md:py-40 bg-brand-black border-t border-white/10">
+        <div class="max-w-4xl mx-auto px-6 text-center space-y-12">
             <div class="reveal space-y-4">
-                <h3 class="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-tight">L'Agenda.</h3>
-                <p class="text-gray-500 max-w-lg mx-auto text-sm uppercase font-bold tracking-widest px-4">Intervention Grenoble, Voiron & Pays Voironnais</p>
+                <h3 class="text-4xl md:text-7xl font-black uppercase tracking-tighter leading-tight text-white">L'Agenda.</h3>
+                <p class="text-white max-w-lg mx-auto text-[11px] font-black uppercase tracking-[0.3em] px-4 leading-relaxed underline decoration-brand-accent">
+                    Secteur Isère : Grenoble, Voiron, Meylan
+                </p>
             </div>
-            <div class="reveal glass p-2 rounded-[4rem] bg-brand-surface/30 delay-100 shadow-3xl">
-                <div class="bg-brand-surface rounded-[3.8rem] overflow-hidden">
-                    <div class="calendly-inline-widget" data-url="https://calendly.com/VOTRE_LIEN_ICI" style="min-width:320px;height:750px;"></div>
+            
+            <!-- Calendly Container Small -->
+            <div class="reveal glass p-2 rounded-[2.5rem] bg-brand-surface/50 shadow-3xl max-w-3xl mx-auto">
+                <div class="bg-brand-surface rounded-[2.3rem] overflow-hidden">
+                    <div class="calendly-inline-widget" data-url="https://calendly.com/rafael-gmille/new-meeting" style="min-width:320px;"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <div id="live-toast" class="glass p-4 rounded-2xl flex items-center gap-4 border-brand-accent/20">
-        <div class="w-10 h-10 bg-brand-accent/20 rounded-full flex items-center justify-center">
-            <i class="fa-solid fa-bolt text-brand-accent"></i>
+    <!-- LIVE NOTIFICATION TOAST -->
+    <div id="live-toast" class="glass p-5 rounded-[2rem] flex items-center gap-5 border-brand-accent/40 shadow-2xl">
+        <div class="w-12 h-12 bg-brand-accent rounded-2xl flex items-center justify-center shrink-0 shadow-lg">
+            <i class="fa-solid fa-calendar-check text-white text-xl"></i>
         </div>
-        <div class="text-[11px]">
-            <p class="text-white font-bold" id="toast-user">Rémi (Voiron)</p>
-            <p class="text-gray-500" id="toast-action">Vient de réserver un Pack Platinum</p>
+        <div>
+            <p class="text-[12px] font-black text-white" id="toast-user">Utilisateur (Grenoble)</p>
+            <p class="text-[10px] text-white/80 font-bold uppercase tracking-tighter" id="toast-action">Vient de réserver un pack</p>
         </div>
     </div>
 
-    <footer class="py-24 border-t border-white/5 bg-brand-black text-center text-[9px] font-bold text-gray-700 uppercase tracking-[0.5em] px-4">
-        © 2026 SCR Detailing - Expert Isère (38) - Tous droits réservés
+    <footer class="py-24 border-t border-white/10 bg-brand-black px-6 text-center">
+        <div class="max-w-7xl mx-auto space-y-12">
+            <div class="flex items-center justify-center gap-4">
+                <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center font-black text-black text-[10px]">SCR</div>
+                <span class="font-black text-2xl uppercase tracking-tighter text-white">Detailing Isère</span>
+            </div>
+            <p class="text-white text-[11px] font-black uppercase tracking-[0.4em] max-w-sm mx-auto leading-loose">
+                Le spécialiste du nettoyage automobile à domicile. Grenoble • Voiron • Meylan
+            </p>
+            <div class="flex justify-center gap-12 text-3xl text-white">
+                <a href="tel:0749507140" class="hover:text-brand-accent transition-all scale-110"><i class="fa-solid fa-phone"></i></a>
+                <a href="#" class="hover:text-brand-accent transition-all scale-110"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+            <p class="text-[10px] text-white/30 font-black uppercase tracking-[0.4em] pt-12">© 2026 SCR Detailing - Tous droits réservés</p>
+        </div>
     </footer>
 
+    <!-- SCRIPTS -->
     <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
     <script>
-        // Reveal
+        // 1. Mobile Menu Toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            const isHidden = menu.classList.contains('hidden');
+            
+            if(isHidden) {
+                menu.classList.remove('hidden');
+                icon.className = 'fa-solid fa-xmark text-2xl';
+            } else {
+                menu.classList.add('hidden');
+                icon.className = 'fa-solid fa-bars-staggered text-2xl';
+            }
+        }
+
+        // 2. Reveal Scroll Logic
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // Panier
+        // 3. Cart & Pricing Logic
         let cart = { base: 0, name: '-' };
         function selectBase(name, price) {
             cart.base = price; cart.name = name;
             document.getElementById('checkout-bar').classList.remove('hidden');
             document.getElementById('chosen-pack').innerText = name;
+            document.querySelectorAll('#shop [id^="card-"]').forEach(c => c.classList.remove('active-pack'));
+            document.getElementById('card-' + name).classList.add('active-pack');
             updateTotal();
+            if(window.innerWidth < 768) {
+                window.scrollBy({ top: 120, behavior: 'smooth' });
+            }
         }
+
         function updateTotal() {
             let total = cart.base;
             if(document.getElementById('add-suv').checked) total += 15;
             if(document.getElementById('add-hair').checked) total += 20;
-            document.getElementById('final-price').innerText = total + '€';
+            const priceEl = document.getElementById('final-price');
+            priceEl.innerText = total + '€';
+            priceEl.classList.add('scale-110');
+            setTimeout(() => priceEl.classList.remove('scale-110'), 200);
         }
 
-        // Pop-up Notification (Moins fréquente : 45 secondes)
-        const isereCities = ["Grenoble", "Voiron", "Moirans", "Crolles", "Meylan", "Saint-Ismier", "Tullins"];
-        const users = ["Mickaël", "Stéphane", "Julie", "Thomas", "Amandine", "Kevin"];
+        // 4. Live Activity Simulation (Calmed: 45s)
+        const isereCities = ["Grenoble", "Voiron", "Meylan", "Crolles", "Saint-Ismier"];
+        const users = ["Mickaël", "Stéphane", "Julie", "Thomas", "Amandine", "Rémi"];
         const toast = document.getElementById('live-toast');
-        
         function showToast() {
             const city = isereCities[Math.floor(Math.random() * isereCities.length)];
             const user = users[Math.floor(Math.random() * users.length)];
+            const action = Math.random() > 0.5 ? "Pack Platinum" : "Pack Gold";
             document.getElementById('toast-user').innerText = `${user} (${city})`;
+            document.getElementById('toast-action').innerText = `Vient de réserver un ${action}`;
             toast.classList.add('active');
-            setTimeout(() => toast.classList.remove('active'), 5000);
+            setTimeout(() => toast.classList.remove('active'), 6000);
         }
-        // Déclenchement toutes les 45 secondes
         setInterval(showToast, 45000);
 
+        // 5. Header Dynamic Logic
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
-            nav.style.background = window.scrollY > 100 ? 'rgba(8, 8, 8, 0.95)' : 'rgba(255, 255, 255, 0.02)';
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(8, 8, 8, 0.98)';
+                nav.style.height = '70px';
+            } else {
+                nav.style.background = 'rgba(255, 255, 255, 0.05)';
+                nav.style.height = '80px';
+            }
         });
+
+        // 6. Smart Time Text
+        const hour = new Date().getHours();
+        if(hour > 19 || hour < 8) {
+            document.querySelector('.bg-brand-accent').innerHTML = "🌙 BESOIN D'UNE INTERVENTION DEMAIN ? RÉSERVEZ VOTRE CRÉNEAU EN 2 MIN !";
+        }
     </script>
 </body>
 </html>
